@@ -1,5 +1,3 @@
-/* Base Styles */
-
 :root {
     font-size: 10px;
 }
@@ -16,8 +14,216 @@ body {
     background-color: #fafafa;
     color: #262626;
     padding-bottom: 3rem;
+    margin: 0;
 }
 
 img {
     display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
 }
+
+.container {
+    display: grid;
+    grid-template-columns: auto 1fr; /* 2 columns */
+    grid-template-rows: auto auto auto; /* 3 rows in second column */
+    grid-template-areas:
+        "profile-image profile-user-settings"
+        "profile-image profile-stats"
+        "profile-image profile-bio";
+    gap: 1.5rem;
+    padding: 2rem;
+    align-items: start;
+}
+
+.profile-image {
+    grid-area: profile-image;
+    max-width: 150px;
+    border-radius: 50%;
+}
+
+.profile {
+    display: contents; /* Allows direct placement of child elements in grid areas */
+}
+
+.profile-user-settings {
+    grid-area: profile-user-settings;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2rem;
+}
+
+.profile-user-name {
+    font-size: 2.4rem;
+    font-weight: bold;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+.profile-edit-btn,
+.profile-settings-btn {
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+.profile-settings-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-edit-btn:hover,
+.profile-settings-btn:hover {
+    background-color: #007ac1;
+}
+
+.profile-stats {
+    grid-area: profile-stats;
+    display: flex;
+    gap: 2rem;
+    font-size: 1.6rem;
+}
+
+.profile-stats ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 2rem;
+}
+
+.profile-stat-count {
+    font-weight: bold;
+}
+
+.profile-bio {
+    grid-area: profile-bio;
+    font-size: 1.6rem;
+}
+
+.profile-real-name {
+    font-weight: bold;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "profile-image"
+            "profile-user-settings"
+            "profile-stats"
+            "profile-bio";
+        text-align: center;
+    }
+
+    .profile-user-settings,
+    .profile-stats,
+    .profile-bio {
+        text-align: center;
+    }
+}
+
+/* Center and limit the gallery width to match the header */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 700px; /* Adjust this value to match the width of the header */
+    margin: 0 auto; /* Centers the gallery */
+}
+
+
+.gallery-item {
+    position: relative;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 1;
+}
+
+.gallery-item-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item-info ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+}
+
+.gallery-item-likes,
+.gallery-item-comments {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.6rem;
+}
+
+.gallery-item:hover .gallery-item-info {
+    opacity: 1;
+}
+
+/* Utility classes */
+.fa {
+    color: #262626;
+}
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr; /* Stacks the profile image and details vertically */
+        text-align: center;
+    }
+
+    .profile {
+        align-items: center;
+    }
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 6px solid #f3f3f3; /* Light grey */
+    border-top: 6px solid #0095f6; /* Blue */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 2rem auto; /* Center the loader */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
