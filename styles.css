@@ -21,13 +21,13 @@ img {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 50%;
+    border-radius: 0;
 }
 
 .container {
     display: grid;
-    grid-template-columns: auto 1fr; /* 2 columns */
-    grid-template-rows: auto auto auto; /* 3 rows in second column */
+    grid-template-columns: auto 1fr; 
+    grid-template-rows: auto auto auto; 
     grid-template-areas:
         "profile-image profile-user-settings"
         "profile-image profile-stats"
@@ -44,7 +44,7 @@ img {
 }
 
 .profile {
-    display: contents; /* Allows direct placement of child elements in grid areas */
+    display: contents;
 }
 
 .profile-user-settings {
@@ -139,13 +139,13 @@ img {
     }
 }
 
-/* Center and limit the gallery width to match the header */
+
 .gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    max-width: 700px; /* Adjust this value to match the width of the header */
-    margin: 0 auto; /* Centers the gallery */
+    max-width: 700px; 
+    margin: 0 auto; 
 }
 
 
@@ -159,6 +159,7 @@ img {
     object-fit: cover;
     display: block;
     aspect-ratio: 1;
+    border-radius: 0;
 }
 
 .gallery-item-info {
@@ -172,8 +173,12 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     opacity: 0;
     transition: opacity 0.3s ease;
+    font-size: 1.4rem;
+    padding: 0.5rem;
+    text-align: center; 
 }
 
 .gallery-item-info ul {
@@ -182,6 +187,8 @@ img {
     gap: 1rem;
     padding: 0;
     margin: 0;
+    justify-content: center;
+    flex-wrap: wrap; 
 }
 
 .gallery-item-likes,
@@ -189,7 +196,23 @@ img {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.6rem;
+}
+
+@media (max-width: 600px) {
+    .gallery-item-info {
+        font-size: 1.1rem; 
+        padding: 0.3rem; 
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 0.5rem; 
+    }
+
+    .gallery-item-likes,
+    .gallery-item-comments {
+        gap: 0.3rem; 
+    }
 }
 
 .gallery-item:hover .gallery-item-info {
@@ -203,7 +226,7 @@ img {
 
 @media (max-width: 600px) {
     .container {
-        grid-template-columns: 1fr; /* Stacks the profile image and details vertically */
+        grid-template-columns: 1fr; 
         text-align: center;
     }
 
@@ -215,8 +238,8 @@ img {
 .loader {
     width: 50px;
     height: 50px;
-    border: 6px solid #f3f3f3; /* Light grey */
-    border-top: 6px solid #0095f6; /* Blue */
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #0095f6;
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin: 2rem auto; /* Center the loader */
